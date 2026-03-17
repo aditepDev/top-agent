@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Handoff",
+  "description": "Structured handoff package between agents (task, context, status, outputs, blockers, next steps).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "status", "owner", "assignee", "summary", "next_steps"],
+  "properties": {
+    "id": { "type": "string", "description": "Task or issue identifier (e.g., GH-123)." },
+    "title": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["todo", "in_progress", "blocked", "review", "done"]
+    },
+    "owner": { "type": "string", "description": "Current agent owning the task." },
+    "assignee": { "type": "string", "description": "Next agent expected to act." },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "summary": { "type": "string", "description": "Short context of the task so far." },
+    "inputs": {
+      "type": "array",
+      "items": { "type": "string", "description": "Inputs, requirements, acceptance criteria." }
+    },
+    "context": {
+      "type": "array",
+      "description": "Key facts, links, logs, decisions already made.",
+      "items": { "type": "string" }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "ref"],
+        "properties": {
+          "type": { "type": "string", "description": "artifact type (log, pr, file, link, test)" },
+          "ref": { "type": "string", "description": "Path or URL" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string", "description": "Notable decisions + rationale." }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": { "type": "string", "description": "Concrete next actions for the assignee." }
+    },
+    "expected_output": { "type": "string", "description": "What a good completion looks like." },
+    "notes": { "type": "string" }
+  }
+}

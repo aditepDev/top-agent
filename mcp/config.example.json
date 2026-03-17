@@ -1,0 +1,18 @@
+{
+  "sqlite": {
+    "dbPath": "data/index.sqlite",
+    "table": "documents"
+  },
+  "chroma": {
+    "endpoint": "http://localhost:8000",
+    "collection": "top-agent",
+    "apiKey": null
+  },
+  "sources": [
+    "ψ/memory/traces/**/*.md",
+    "ψ/memory/retrospectives/**/*.md",
+    "agents/**/*.md",
+    "README.md",
+    "CLAUDE.md"
+  ]
+}

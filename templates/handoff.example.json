@@ -1,0 +1,33 @@
+{
+  "$schema": "../schemas/handoff.schema.json",
+  "id": "GH-123",
+  "title": "Implement hybrid search ingestion",
+  "status": "in_progress",
+  "owner": "Paul",
+  "assignee": "Neo",
+  "created_at": "2026-03-17T06:50:00Z",
+  "updated_at": "2026-03-17T06:50:00Z",
+  "summary": "Set up SQLite FTS5 + ChromaDB; ingest traces and retrospectives.",
+  "inputs": [
+    "Use SQLite FTS5 for exact lookup",
+    "Use Chroma collection 'top-agent' for semantic search"
+  ],
+  "context": [
+    "Repo initialized",
+    "Memory layout exists at ψ/memory/*"
+  ],
+  "artifacts": [
+    { "type": "doc", "ref": "mcp/README.md", "note": "Connector instructions" }
+  ],
+  "decisions": ["Use Bun/TypeScript for scripts"]
+  ,
+  "blockers": ["Need Chroma endpoint + embedding key"],
+  "risks": ["Token cost if embedding all logs"],
+  "next_steps": [
+    "Hook embedder and run ingestion over ψ/memory",
+    "Store FTS rows and upsert embeddings to Chroma",
+    "Add smoke test for dual search"
+  ],
+  "expected_output": "Docs indexed; hybrid search returns top results from both FTS + semantic",
+  "notes": "Add /rrr entry after completion"
+}
